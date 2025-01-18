@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seasonal Flower</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .flower {
+      font-size: 20px;
+      margin: 15px 0;
+    }
+    a {
+      color: #0073e6;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌸 Seasonal Flower</h1>
+  <div class="flower" id="flower">Loading...</div>
+  <a id="flowerLink" href="#" target="_blank">Learn more about this flower</a>
+  <footer>&copy; 2025 Seasonal Bloom</footer>
+
+  <script>
+    // Compact flower database
+    const flowerDB = [
+      "Cherry Blossom", "Tulip", "Daffodil", "Azalea", "Magnolia", "Lilac", "Iris", "Peony",
+      "Sunflower", "Hibiscus", "Rose", "Marigold", "Daisy", "Lavender", "Zinnia", "Petunia",
+      "Chrysanthemum", "Camellia", "Aster", "Japanese Maple", "Goldenrod", "Sneezeweed", 
+      "Cosmos", "Snapdragon", "Poinsettia", "Holly", "Winter Jasmine", "Cyclamen", 
+      "Amaryllis", "Snowdrop", "Winter Heath", "Christmas Cactus"
+    ];
+
+    // Seasonal flower indices (referencing flowerDB)
+    const flowersBySeason = {
+      spring: [0, 1, 2, 3, 4, 5, 6, 7],
+      summer: [8, 9, 10, 11, 12, 13, 14, 15],
+      fall: [16, 17, 18, 19, 20, 21, 22, 23],
+      winter: [24, 25, 26, 27, 28, 29, 30, 31]
+    };
+
+    // Determine the season
+    const month = new Date().getMonth() + 1;
+    let season = "";
+    if (month >= 3 && month <= 5) season = "spring";
+    else if (month >= 6 && month <= 8) season = "summer";
+    else if (month >= 9 && month <= 11) season = "fall";
+    else season = "winter";
+
+    // Select a random flower for the current season
+    const flowerIndices = flowersBySeason[season];
+    const randomIndex = flowerIndices[Math.floor(Math.random() * flowerIndices.length)];
+    const randomFlower = flowerDB[randomIndex];
+
+    // Update the page with the selected flower
+    document.getElementById("flower").textContent = `🌼 ${randomFlower}`;
+    document.getElementById("flowerLink").href = `https://www.google.com/search?hl=en&tbm=isch&q=${encodeURIComponent(randomFlower)}`;
+  </script>
+</body>
+</html>
